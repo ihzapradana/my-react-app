@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import PropTypes from 'prop-types';
 
-function App() {
-  const [count, setCount] = useState(0)
+Button.propTypes = {
+  variant: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  // children: PropTypes.node
+};
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Hello Gaiss</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+function Button(props) {
+  const {variant="bg-black text-white"} = props;
+  return(
+    <button
+        className={`h-10 px-6 font-semibold rounded-md ${variant} text-white`}
+        type="submit"
+      >
+        {props.text}
+      </button>
   )
 }
 
-export default App
+function App() {
+  return (
+    <div className="flex justify-center bg-lime-500 min-h-screen items-center gap-3">
+      <h1 className="text-3xl font-bold">Silakan Login/Logout!</h1>
+      <div className='flex gap-x-3'>
+        <Button variant="bg-red-600" text="Logout"></Button>
+        <Button variant="bg-blue-700" text="Login">Login</Button>
+      </div>
+    </div>
+  );
+}
+
+export default App;
